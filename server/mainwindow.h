@@ -1,6 +1,10 @@
 #pragma once
 
+#include "network.h"
+
 #include <QWidget>
+#include <QThread>
+#include <QStringList>
 
 namespace Ui
 {
@@ -15,9 +19,23 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private:
-    void setupUI();
+public slots:
+    void sendDatagram();
+
+signals:
+    void datagram(const QStringList &);
 
 private:
+    void setupUI();
+    void setupSignalsSlots();
+
+    qreal cameraAngle() const;
+    qreal horisontSpace() const;
+    qreal verticalSpace() const;
+
+private:
+    Network *network;
+    QThread networkThread;
+
     Ui::MainWindow *ui;
 };
