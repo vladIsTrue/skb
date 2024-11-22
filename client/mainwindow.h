@@ -1,6 +1,9 @@
 #pragma once
 
+#include "network.h"
+
 #include <QWidget>
+#include <QThread>
 #include <QGraphicsView>
 #include <QGraphicsSvgItem>
 
@@ -22,15 +25,21 @@ public slots:
 
 private:
     void setupUI();
+    void setupSignalsSlots();
     void configureComboBoxes();
 
     void addSvgCrosshair(QGraphicsScene *scene);
     void addGreenCrosshair(QGraphicsScene *scene, qreal size);
 
+    void processPendingDatagram(QByteArray datagram);
+
 private:
     QGraphicsSvgItem *black;
     QGraphicsSvgItem *red;
-
     QGraphicsView *view;
+
+    Network *network;
+    QThread networkThread;
+
     Ui::MainWindow *ui;
 };

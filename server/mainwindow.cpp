@@ -23,10 +23,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::sendDatagram()
 {
-    emit datagram(QStringList()
-                  << QString::number(cameraAngle())
-                  << QString::number(horisontSpace())
-                  << QString::number(verticalSpace()));
+    emit datagram({cameraAngle(),
+                   horisontSpace(),
+                   verticalSpace()});
 }
 
 void MainWindow::setupUI()

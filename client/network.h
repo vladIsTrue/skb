@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QUdpSocket>
+#include <QByteArray>
 
 #include <memory>
 
@@ -18,7 +19,12 @@ public:
     explicit Network(const ConnectionSettings &settings = {QHostAddress::LocalHost, 3333});
 
     void lazyInit();
-    void sendDatagram(const QVector<qreal> &data);
+
+signals:
+    void pendingDatagram(QByteArray);
+
+private:
+    void readPendingDatagrams();
 
 private:
     std::unique_ptr<QUdpSocket> socket;

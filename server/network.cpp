@@ -12,7 +12,7 @@ void Network::lazyInit()
     socket.reset(new QUdpSocket);
 }
 
-void Network::sendDatagram(const QStringList &data)
+void Network::sendDatagram(const QVector<qreal> &data)
 {
     QByteArray datagram;
     QDataStream out(&datagram, QIODevice::WriteOnly);

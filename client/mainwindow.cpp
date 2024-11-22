@@ -4,18 +4,27 @@
 
 #include <QColor>
 #include <QVariant>
+#include <QDataStream>
 #include <QGraphicsScene>
 #include <QGraphicsLineItem>
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
+    , network(new Network)
     , ui(new Ui::MainWindow)
 {
     setupUI();
+    setupSignalsSlots();
+
+    network->moveToThread(&networkThread);
+    networkThread.start();
 }
 
 MainWindow::~MainWindow()
 {
+    networkThread.quit();
+    networkThread.wait();
+
     delete ui;
 }
 
@@ -34,6 +43,28 @@ void MainWindow::setupUI()
     }
 
     configureComboBoxes();
+}
+
+void MainWindow::setupSignalsSlots()
+{
+    connect(&networkThread, &QThread::started,
+            network, &Network::lazyInit, Qt::QueuedConnection);
+    connect(network, &Network::pendingDatagram,
+            this, &MainWindow::processPendingDatagram, Qt::QueuedConnection);
+    connect(&networkThread, &QThread::finished, network, &QObject::deleteLater);
+}
+
+void MainWindow::processPendingDatagram(QByteArray datagram)
+{
+    double angle, horizontSpace, verticalSpace;
+
+    QDataStream in(&datagram, QIODevice::ReadOnly);
+
+    in >> angle >> horizontSpace >> verticalSpace;
+
+    ui->angleLabel->setText(tr("Угол камеры: %1").arg(angle));
+    ui->horizontalLabel->setText(tr("Отступ по горизонтали: %1").arg(horizontSpace));
+    ui->verticalLabel->setText(tr("Отступ по вертикали: %1").arg(verticalSpace));
 }
 
 void MainWindow::configureComboBoxes()

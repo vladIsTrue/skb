@@ -23,7 +23,7 @@ public slots:
     void sendDatagram();
 
 signals:
-    void datagram(const QStringList &);
+    void datagram(const QVector<qreal> &);
 
 private:
     void setupUI();

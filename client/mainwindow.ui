@@ -73,12 +73,12 @@
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QLabel" name="horisontalLabel">
+       <widget class="QLabel" name="horizontalLabel">
         <property name="text">
          <string>Отступ по горизонтали:</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
         <property name="margin">
          <number>4</number>
@@ -91,7 +91,7 @@
          <string>Угол камеры:</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
         <property name="margin">
          <number>4</number>
@@ -104,7 +104,7 @@
          <string>Отступ по вертикали:</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
         <property name="margin">
          <number>4</number>
