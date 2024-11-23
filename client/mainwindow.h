@@ -21,6 +21,7 @@ public:
     ~MainWindow();
 
 public slots:
+    void updateCrosshairColor(int index);
     void updateBackground(int index);
 
 private:

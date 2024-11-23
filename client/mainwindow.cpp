@@ -73,13 +73,13 @@ void MainWindow::configureComboBoxes()
     ui->background->addItem(tr("Черный"), QColor{Qt::black});
     ui->background->addItem(tr("Серый"), QColor{Qt::gray});
 
-    connect(ui->aim, &QComboBox::currentIndexChanged, [=] (int index)
-    {
-        crosshair->setColor(static_cast<CrosshairColor>(index));
-    });
-
     ui->aim->addItem(tr("Красный"));
     ui->aim->addItem(tr("Черный"));
+}
+
+void MainWindow::updateCrosshairColor(int index)
+{
+    crosshair->setColor(index == 0 ? CrosshairColor::red : CrosshairColor::black);
 }
 
 void MainWindow::updateBackground(int index)

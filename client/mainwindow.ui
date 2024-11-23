@@ -175,9 +175,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>aim</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>updateCrosshairColor(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>448</x>
+     <y>466</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>446</x>
+     <y>519</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>updateBackground(int)</slot>
-  <slot>updateCrosshair(int)</slot>
+  <slot>updateCrosshairColor(int)</slot>
  </slots>
 </ui>
