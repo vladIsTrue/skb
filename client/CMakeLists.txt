@@ -25,6 +25,7 @@ set(PROJECT_SOURCES
 
 add_executable(${PROJECT_NAME}
     ${PROJECT_SOURCES}
+    svgcrosshair.h svgcrosshair.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets

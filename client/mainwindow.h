@@ -1,11 +1,11 @@
 #pragma once
 
 #include "network.h"
+#include "svgcrosshair.h"
 
 #include <QWidget>
 #include <QThread>
 #include <QGraphicsView>
-#include <QGraphicsSvgItem>
 
 namespace Ui
 {
@@ -34,8 +34,7 @@ private:
     void processPendingDatagram(QByteArray datagram);
 
 private:
-    QGraphicsSvgItem *black;
-    QGraphicsSvgItem *red;
+    SvgCrosshair *crosshair;
     QGraphicsView *view;
 
     Network *network;

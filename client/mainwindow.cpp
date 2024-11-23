@@ -1,13 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "aspectratiowidget.h"
 #include "crosshairitem.h"
+#include "aspectratiowidget.h"
 
 #include <QColor>
 #include <QVariant>
 #include <QDataStream>
 #include <QGraphicsScene>
-#include <QGraphicsLineItem>
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -70,14 +69,13 @@ void MainWindow::processPendingDatagram(QByteArray datagram)
 
 void MainWindow::configureComboBoxes()
 {
-    ui->background->addItem(tr("Черный"), QColor{Qt::black});
     ui->background->addItem(tr("Белый"), QColor{Qt::white});
+    ui->background->addItem(tr("Черный"), QColor{Qt::black});
     ui->background->addItem(tr("Серый"), QColor{Qt::gray});
 
     connect(ui->aim, &QComboBox::currentIndexChanged, [=] (int index)
     {
-        red->setVisible(!index);
-        black->setVisible(index);
+        crosshair->setColor(static_cast<CrosshairColor>(index));
     });
 
     ui->aim->addItem(tr("Красный"));
@@ -99,17 +97,11 @@ void MainWindow::addGreenCrosshair(QGraphicsScene *scene, qreal size)
 
 void MainWindow::addSvgCrosshair(QGraphicsScene *scene)
 {
-    red = new QGraphicsSvgItem(QStringLiteral(":/crosshair_red.svg"));
-    black = new QGraphicsSvgItem(QStringLiteral(":/crosshair_black.svg"));
+    crosshair = new SvgCrosshair;
 
-    QGraphicsItemGroup *group = new QGraphicsItemGroup();
-    group->addToGroup(red);
-    group->addToGroup(black);
+    auto widht = scene->width() * 0.5 - crosshair->boundingRect().width() * 0.5;
+    auto height = scene->height() * 0.5 - crosshair->boundingRect().height() * 0.5;
 
-    auto widht = scene->width() * 0.5 - group->boundingRect().width() * 0.5;
-    auto height = scene->height() * 0.5 - group->boundingRect().height() * 0.5;
-
-    group->setPos(widht, height);
-
-    view->scene()->addItem(group);
+    crosshair->setPos(widht, height);
+    view->scene()->addItem(crosshair);
 }
