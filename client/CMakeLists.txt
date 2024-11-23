@@ -15,6 +15,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets SvgWidgets Networ
 set(PROJECT_SOURCES
     mainwindow.h mainwindow.cpp mainwindow.ui
     aspectratiowidget.h aspectratiowidget.cpp
+    crosshairitem.h crosshairitem.cpp
     network.h network.cpp
 
     main.cpp

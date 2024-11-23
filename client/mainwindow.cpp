@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "aspectratiowidget.h"
+#include "crosshairitem.h"
 
 #include <QColor>
 #include <QVariant>
@@ -91,20 +92,9 @@ void MainWindow::updateBackground(int index)
 
 void MainWindow::addGreenCrosshair(QGraphicsScene *scene, qreal size)
 {
-    QGraphicsLineItem *line1 = new QGraphicsLineItem();
-    QGraphicsLineItem *line2 = new QGraphicsLineItem();
-
-    qreal lineWidth = 4;
-
-    line1->setLine(0, -size, 0, size);
-    line2->setLine(-size, 0, size, 0);
-    line1->setPen(QPen{QColor{Qt::green}, lineWidth});
-    line2->setPen(QPen{QColor{Qt::green}, lineWidth});
-    line1->setPos(scene->width() * 0.5, scene->height() * 0.5);
-    line2->setPos(scene->width() * 0.5, scene->height() * 0.5);
-
-    scene->addItem(line1);
-    scene->addItem(line2);
+    GreenCrosshairItem *green = new GreenCrosshairItem(size);
+    green->setPos(scene->width() * 0.5, scene->height() * 0.5);
+    scene->addItem(green);
 }
 
 void MainWindow::addSvgCrosshair(QGraphicsScene *scene)
