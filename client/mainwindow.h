@@ -33,6 +33,7 @@ private:
     void addGreenCrosshair(QGraphicsScene *scene, qreal size);
 
     void processPendingDatagram(QByteArray datagram);
+    void crosshairMove(qreal horisontal, qreal vertical);
 
 private:
     SvgCrosshair *crosshair;

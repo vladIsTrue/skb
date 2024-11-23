@@ -36,7 +36,7 @@ void MainWindow::setupUI()
     view = ui->aspectRatioWidget->getView();
     {
         // read sizes or something
-        view->setScene(new QGraphicsScene(0, 0, 2048, 2048));
+        view->setScene(new QGraphicsScene(0, 0, 4000, 3000));
 
         addGreenCrosshair(view->scene(), 240);
         addSvgCrosshair(view->scene());
@@ -65,6 +65,22 @@ void MainWindow::processPendingDatagram(QByteArray datagram)
     ui->angleLabel->setText(tr("Угол камеры: %1").arg(angle));
     ui->horizontalLabel->setText(tr("Отступ по горизонтали: %1").arg(horizontSpace));
     ui->verticalLabel->setText(tr("Отступ по вертикали: %1").arg(verticalSpace));
+
+    crosshairMove(horizontSpace, verticalSpace);
+}
+
+void MainWindow::crosshairMove(qreal horisontal, qreal vertical)
+{
+    qreal widht = view->sceneRect().width();
+    qreal height = view->sceneRect().height();
+
+    qreal crWidht = crosshair->boundingRect().width();
+    qreal crHeight = crosshair->boundingRect().height();
+
+    auto centeterWidht = widht * 0.5 - crWidht * 0.5;
+    auto centeterHeight = height * 0.5 - crHeight * 0.5;
+
+    crosshair->setPos(centeterWidht + (widht * 0.5 * horisontal), centeterHeight + (height * 0.5 *vertical));
 }
 
 void MainWindow::configureComboBoxes()
