@@ -5,8 +5,10 @@
 
 #include <QColor>
 #include <QVariant>
+#include <QTimeLine>
 #include <QDataStream>
 #include <QGraphicsScene>
+#include <QGraphicsItemAnimation>
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -38,8 +40,8 @@ void MainWindow::setupUI()
         // read sizes or something
         view->setScene(new QGraphicsScene(0, 0, 1000, 750));
 
-        addGreenCrosshair(view->scene(), 150);
         addSvgCrosshair(view->scene());
+        addGreenCrosshair(view->scene(), 150);
     }
 
     configureComboBoxes();
@@ -69,8 +71,8 @@ void MainWindow::processPendingDatagram(QByteArray datagram)
     if (not crosshair->isVisible())
         crosshair->setVisible(true);
 
-    crosshairMove(horizontSpace, verticalSpace);
     crosshairScaleForAngle(angle);
+    crosshairMove(horizontSpace, verticalSpace);
 }
 
 void MainWindow::crosshairMove(qreal horisontal, qreal vertical)
@@ -81,11 +83,27 @@ void MainWindow::crosshairMove(qreal horisontal, qreal vertical)
     qreal crWidht = crosshair->boundingRect().width();
     qreal crHeight = crosshair->boundingRect().height();
 
-    qreal centeterWidht = widht * 0.5 - crWidht * 0.5;
-    qreal centeterHeight = height * 0.5 - crHeight * 0.5;
+    qreal centerX = widht * 0.5 - crWidht * 0.5;
+    qreal centerY = height * 0.5 - crHeight * 0.5;
 
-    crosshair->setPos(centeterWidht + (widht * 0.5 * horisontal),
-                      centeterHeight + (height * 0.5 *vertical));
+    auto animation = [=]
+    {
+        QTimeLine *timer = new QTimeLine(3000);
+
+        QGraphicsItemAnimation *animation = new QGraphicsItemAnimation(timer);
+        animation->setItem(crosshair);
+        animation->setTimeLine(timer);
+        animation->setPosAt(1.0, QPointF(centerX + (widht * 0.5 * horisontal),
+                                         centerY + (height * 0.5 * vertical)));
+
+        timer->start();
+
+        connect(timer, &QTimeLine::finished, &animations, &Animations::next);
+        connect(timer, &QTimeLine::finished, timer, &QObject::deleteLater);
+    };
+
+    animations.pushBack(std::move(animation));
+    animations.show();
 }
 
 void MainWindow::crosshairScaleForAngle(qreal angle)
@@ -105,6 +123,7 @@ void MainWindow::configureComboBoxes()
 
 void MainWindow::updateCrosshairColor(int index)
 {
+    // simple way
     crosshair->setColor(index == 0 ? CrosshairColor::red : CrosshairColor::black);
 }
 

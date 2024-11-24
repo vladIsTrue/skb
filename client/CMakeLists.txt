@@ -17,6 +17,7 @@ set(PROJECT_SOURCES
     aspectratiowidget.h aspectratiowidget.cpp
     crosshairitem.h crosshairitem.cpp
     svgcrosshair.h svgcrosshair.cpp
+    animations.h animations.cpp
     network.h network.cpp
 
     main.cpp

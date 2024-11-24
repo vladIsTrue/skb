@@ -2,6 +2,7 @@
 
 #include "network.h"
 #include "svgcrosshair.h"
+#include "animations.h"
 
 #include <QWidget>
 #include <QThread>
@@ -49,6 +50,8 @@ private:
 
     Network *network;
     QThread networkThread;
+
+    Animations animations;
 
     Ui::MainWindow *ui;
 };
