@@ -66,6 +66,9 @@ void MainWindow::processPendingDatagram(QByteArray datagram)
     ui->horizontalLabel->setText(tr("Отступ по горизонтали: %1").arg(horizontSpace));
     ui->verticalLabel->setText(tr("Отступ по вертикали: %1").arg(verticalSpace));
 
+    if (not crosshair->isVisible())
+        crosshair->setVisible(true);
+
     crosshairMove(horizontSpace, verticalSpace);
     crosshairScaleForAngle(angle);
 }
@@ -87,8 +90,7 @@ void MainWindow::crosshairMove(qreal horisontal, qreal vertical)
 
 void MainWindow::crosshairScaleForAngle(qreal angle)
 {
-    qreal factor = 6000. / 360. * angle / 20.;
-    crosshair->setScale(1. / factor);
+    crosshair->setScale(1. / (factor * angle));
 }
 
 void MainWindow::configureComboBoxes()
@@ -128,4 +130,6 @@ void MainWindow::addSvgCrosshair(QGraphicsScene *scene)
 
     crosshair->setPos(widht, height);
     view->scene()->addItem(crosshair);
+
+    crosshair->setVisible(false);
 }

@@ -39,6 +39,11 @@ private:
     void crosshairScaleForAngle(qreal angle);
 
 private:
+    // factor посчитанный с расчетом,
+    // что цена деления прицела - 1 тысячная
+    // для прицела, с 20 делениями на шкале
+    const qreal factor = 6000. / 7200.;
+
     SvgCrosshair *crosshair;
     QGraphicsView *view;
 
