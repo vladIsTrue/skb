@@ -2,6 +2,8 @@
 
 #include <QNetworkDatagram>
 
+using namespace network;
+
 Network::Network(const ConnectionSettings &settings)
     : settings(settings)
 {

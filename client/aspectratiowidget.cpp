@@ -2,8 +2,6 @@
 
 #include <QResizeEvent>
 
-#include <QGraphicsLineItem>
-
 AspectRatio4x3Widget::AspectRatio4x3Widget(QWidget *parent)
     : QWidget(parent)
 {
@@ -30,16 +28,13 @@ void AspectRatio4x3Widget::resizeEvent(QResizeEvent *event)
 
     int widgetStretch, outerStretch;
 
-    if (thisAspectRatio > (arWidth / arHeight))
-    {
+    if (thisAspectRatio > (ascpectRatio)) {
         layout->setDirection(QBoxLayout::LeftToRight);
-        widgetStretch = height() * (arWidth / arHeight);
+        widgetStretch = height() * (ascpectRatio);
         outerStretch = (width() - widgetStretch) * 0.5 + 0.5;
-    }
-    else
-    {
+    } else {
         layout->setDirection(QBoxLayout::TopToBottom);
-        widgetStretch = width() * (arHeight / arWidth);
+        widgetStretch = width() * (backAscpectRatio);
         outerStretch = (height() - widgetStretch) * 0.5 + 0.5;
     }
 
@@ -49,3 +44,11 @@ void AspectRatio4x3Widget::resizeEvent(QResizeEvent *event)
 
     view->fitInView(view->sceneRect(), Qt::KeepAspectRatio);
 }
+
+void AspectRatio4x3Widget::showEvent(QShowEvent *event)
+{
+    Q_UNUSED(event);
+
+    view->fitInView(view->sceneRect(), Qt::KeepAspectRatio);
+}
+

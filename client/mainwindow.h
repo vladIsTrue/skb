@@ -16,6 +16,8 @@ class MainWindow : public QWidget
 {
     Q_OBJECT
 
+    using Network = network::Network;
+
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

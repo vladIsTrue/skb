@@ -5,6 +5,9 @@
 
 #include <memory>
 
+namespace network
+{
+
 struct ConnectionSettings
 {
     QHostAddress host;
@@ -30,3 +33,5 @@ private:
     std::unique_ptr<QUdpSocket> socket;
     ConnectionSettings settings;
 };
+
+}

@@ -13,11 +13,12 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
-
+    void showEvent(QShowEvent *event) override;
 private:
     QBoxLayout *layout;
     QGraphicsView *view;
 
-    qreal arWidth = 4.;
-    qreal arHeight = 3.;
+    qreal ascpectRatio = 4. / 3.;
+    qreal backAscpectRatio = 1. / ascpectRatio;
+
 };

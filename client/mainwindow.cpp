@@ -8,6 +8,8 @@
 #include <QDataStream>
 #include <QGraphicsScene>
 
+using network::Network;
+
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
     , network(new Network)
