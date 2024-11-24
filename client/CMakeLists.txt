@@ -16,6 +16,8 @@ set(PROJECT_SOURCES
     mainwindow.h mainwindow.cpp mainwindow.ui
     aspectratiowidget.h aspectratiowidget.cpp
     crosshairitem.h crosshairitem.cpp
+    scaledsvgitem.h scaledsvgitem.cpp
+    svgcrosshair.h svgcrosshair.cpp
     network.h network.cpp
 
     main.cpp
@@ -25,7 +27,6 @@ set(PROJECT_SOURCES
 
 add_executable(${PROJECT_NAME}
     ${PROJECT_SOURCES}
-    svgcrosshair.h svgcrosshair.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets

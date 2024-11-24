@@ -8,8 +8,6 @@
 #include <QDataStream>
 #include <QGraphicsScene>
 
-using network::Network;
-
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
     , network(new Network)
@@ -38,7 +36,7 @@ void MainWindow::setupUI()
     view = ui->aspectRatioWidget->getView();
     {
         // read sizes or something
-        view->setScene(new QGraphicsScene(0, 0, 4000, 3000));
+        view->setScene(new QGraphicsScene(0, 0, 2000, 1500));
 
         addGreenCrosshair(view->scene(), 240);
         addSvgCrosshair(view->scene());
@@ -79,10 +77,11 @@ void MainWindow::crosshairMove(qreal horisontal, qreal vertical)
     qreal crWidht = crosshair->boundingRect().width();
     qreal crHeight = crosshair->boundingRect().height();
 
-    auto centeterWidht = widht * 0.5 - crWidht * 0.5;
-    auto centeterHeight = height * 0.5 - crHeight * 0.5;
+    qreal centeterWidht = widht * 0.5 - crWidht * 0.5;
+    qreal centeterHeight = height * 0.5 - crHeight * 0.5;
 
-    crosshair->setPos(centeterWidht + (widht * 0.5 * horisontal), centeterHeight + (height * 0.5 *vertical));
+    crosshair->setPos(centeterWidht + (widht * 0.5 * horisontal),
+                      centeterHeight + (height * 0.5 *vertical));
 }
 
 void MainWindow::configureComboBoxes()

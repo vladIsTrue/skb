@@ -1,6 +1,6 @@
 #pragma once
 
-#include <QGraphicsSvgItem>
+#include "scaledsvgitem.h"
 
 enum class CrosshairColor
 {
@@ -18,7 +18,9 @@ public:
     void setRed();
     void setBlack();
 
+    QRectF boundingRect() const override;
+
 private:
-    QGraphicsSvgItem *red;
-    QGraphicsSvgItem *black;
+    ScaledSvgItem *red;
+    ScaledSvgItem *black;
 };

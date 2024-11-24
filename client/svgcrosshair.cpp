@@ -3,8 +3,8 @@
 SvgCrosshair::SvgCrosshair(QGraphicsItem *parent)
     : QGraphicsItemGroup(parent)
 {
-    red = new QGraphicsSvgItem(QStringLiteral(":/crosshair_red.svg"));
-    black = new QGraphicsSvgItem(QStringLiteral(":/crosshair_black.svg"));
+    red = new ScaledSvgItem(QStringLiteral(":/crosshair_red.svg"));
+    black = new ScaledSvgItem(QStringLiteral(":/crosshair_black.svg"));
 
     addToGroup(red);
     addToGroup(black);
@@ -26,4 +26,10 @@ void SvgCrosshair::setBlack()
 {
     red->setVisible(false);
     black->setVisible(true);
+}
+
+QRectF SvgCrosshair::boundingRect() const
+{
+    // assume that boundingRect for red and black is the same
+    return red->boundingRect();
 }

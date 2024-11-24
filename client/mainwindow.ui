@@ -59,10 +59,17 @@
     </item>
     <item>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="1" column="0">
-       <widget class="QLabel" name="label">
+      <item row="2" column="2">
+       <widget class="QComboBox" name="aim">
+        <property name="currentIndex">
+         <number>-1</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Цвет фона:</string>
+         <string>Цвет прицела:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -72,46 +79,20 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="horizontalLabel">
-        <property name="text">
-         <string>Отступ по горизонтали:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-        </property>
-        <property name="margin">
-         <number>4</number>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="angleLabel">
-        <property name="text">
-         <string>Угол камеры:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-        </property>
-        <property name="margin">
-         <number>4</number>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QLabel" name="verticalLabel">
-        <property name="text">
-         <string>Отступ по вертикали:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-        </property>
-        <property name="margin">
-         <number>4</number>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="0">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="1">
        <widget class="QComboBox" name="background">
         <property name="editable">
          <bool>false</bool>
@@ -124,17 +105,36 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="aim">
-        <property name="currentIndex">
-         <number>-1</number>
+      <item row="2" column="3">
+       <widget class="QLabel" name="verticalLabel">
+        <property name="text">
+         <string>Отступ по вертикали:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+        <property name="margin">
+         <number>4</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="horizontalLabel">
+        <property name="text">
+         <string>Отступ по горизонтали:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+        <property name="margin">
+         <number>4</number>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="label">
         <property name="text">
-         <string>Цвет прицела:</string>
+         <string>Цвет фона:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -143,6 +143,32 @@
          <number>4</number>
         </property>
        </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="angleLabel">
+        <property name="text">
+         <string>Угол камеры:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+        <property name="margin">
+         <number>4</number>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="4">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </item>
