@@ -3,11 +3,16 @@
 SvgCrosshair::SvgCrosshair(QGraphicsItem *parent)
     : QGraphicsItemGroup(parent)
 {
-    red = new ScaledSvgItem(QStringLiteral(":/crosshair_red.svg"));
-    black = new ScaledSvgItem(QStringLiteral(":/crosshair_black.svg"));
+    red = new QGraphicsSvgItem(QStringLiteral(":/crosshair_red.svg"));
+    black = new QGraphicsSvgItem(QStringLiteral(":/crosshair_black.svg"));
 
     addToGroup(red);
     addToGroup(black);
+
+    realWidth = QGraphicsItemGroup::boundingRect().width();
+    realHeight = QGraphicsItemGroup::boundingRect().height();
+
+    setScale(scaleFactor);
 }
 
 void SvgCrosshair::setColor(CrosshairColor color)
@@ -16,20 +21,26 @@ void SvgCrosshair::setColor(CrosshairColor color)
     red->setVisible(color == CrosshairColor::red);
 }
 
-void SvgCrosshair::setRed()
+void SvgCrosshair::setScale(qreal scale)
 {
-    black->setVisible(false);
-    red->setVisible(true);
-}
+    QSizeF oldSize = scaledRect().size();
+    QPointF oldPos = scenePos();
+    scaleFactor = scale;
 
-void SvgCrosshair::setBlack()
-{
-    red->setVisible(false);
-    black->setVisible(true);
+    QGraphicsItemGroup::setScale(scale);
+
+    QSizeF newSize = scaledRect().size();
+
+    setPos(oldPos.x() + (oldSize.width() - newSize.width()) * 0.5,
+           oldPos.y() + (oldSize.height() - newSize.height()) * 0.5);
 }
 
 QRectF SvgCrosshair::boundingRect() const
 {
-    // assume that boundingRect for red and black is the same
-    return red->boundingRect();
+    return scaledRect();
+}
+
+QRectF SvgCrosshair::scaledRect() const
+{
+    return QRectF(0., 0., realWidth * scaleFactor, realHeight * scaleFactor);
 }

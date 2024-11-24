@@ -36,9 +36,9 @@ void MainWindow::setupUI()
     view = ui->aspectRatioWidget->getView();
     {
         // read sizes or something
-        view->setScene(new QGraphicsScene(0, 0, 2000, 1500));
+        view->setScene(new QGraphicsScene(0, 0, 1000, 750));
 
-        addGreenCrosshair(view->scene(), 240);
+        addGreenCrosshair(view->scene(), 150);
         addSvgCrosshair(view->scene());
     }
 
@@ -67,6 +67,7 @@ void MainWindow::processPendingDatagram(QByteArray datagram)
     ui->verticalLabel->setText(tr("Отступ по вертикали: %1").arg(verticalSpace));
 
     crosshairMove(horizontSpace, verticalSpace);
+    crosshairScaleForAngle(angle);
 }
 
 void MainWindow::crosshairMove(qreal horisontal, qreal vertical)
@@ -82,6 +83,12 @@ void MainWindow::crosshairMove(qreal horisontal, qreal vertical)
 
     crosshair->setPos(centeterWidht + (widht * 0.5 * horisontal),
                       centeterHeight + (height * 0.5 *vertical));
+}
+
+void MainWindow::crosshairScaleForAngle(qreal angle)
+{
+    qreal factor = 6000. / 360. * angle / 20.;
+    crosshair->setScale(1. / factor);
 }
 
 void MainWindow::configureComboBoxes()

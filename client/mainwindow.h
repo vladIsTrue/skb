@@ -36,6 +36,7 @@ private:
 
     void processPendingDatagram(QByteArray datagram);
     void crosshairMove(qreal horisontal, qreal vertical);
+    void crosshairScaleForAngle(qreal angle);
 
 private:
     SvgCrosshair *crosshair;
