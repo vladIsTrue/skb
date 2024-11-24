@@ -51,4 +51,3 @@ void AspectRatio4x3Widget::showEvent(QShowEvent *event)
 
     view->fitInView(view->sceneRect(), Qt::KeepAspectRatio);
 }
-

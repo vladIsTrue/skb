@@ -1,7 +1,8 @@
 #pragma once
 
-#include <QQueue>
 #include <QObject>
+#include <QQueue>
+
 #include <functional>
 
 class Animations : public QObject
@@ -20,4 +21,3 @@ private:
 
     volatile bool runnig = false;
 };
-

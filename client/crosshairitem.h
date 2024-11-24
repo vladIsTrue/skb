@@ -1,7 +1,7 @@
 #pragma once
 
-#include <QPainter>
 #include <QGraphicsItem>
+#include <QPainter>
 
 class GreenCrosshairItem : public QGraphicsItem
 {

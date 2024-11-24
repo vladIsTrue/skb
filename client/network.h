@@ -1,12 +1,11 @@
 #pragma once
 
-#include <QUdpSocket>
 #include <QByteArray>
+#include <QUdpSocket>
 
 #include <memory>
 
-namespace network
-{
+namespace network {
 
 struct ConnectionSettings
 {
@@ -20,7 +19,6 @@ class Network : public QObject
 
 public:
     explicit Network(const ConnectionSettings &settings = {QHostAddress::LocalHost, 3333});
-
     void lazyInit();
 
 signals:
@@ -33,5 +31,4 @@ private:
     std::unique_ptr<QUdpSocket> socket;
     ConnectionSettings settings;
 };
-
-}
+} // namespace network

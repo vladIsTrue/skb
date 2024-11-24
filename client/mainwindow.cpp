@@ -1,14 +1,14 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "crosshairitem.h"
 #include "aspectratiowidget.h"
+#include "crosshairitem.h"
+#include "ui_mainwindow.h"
 
 #include <QColor>
-#include <QVariant>
-#include <QTimeLine>
 #include <QDataStream>
-#include <QGraphicsScene>
 #include <QGraphicsItemAnimation>
+#include <QGraphicsScene>
+#include <QTimeLine>
+#include <QVariant>
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -49,10 +49,13 @@ void MainWindow::setupUI()
 
 void MainWindow::setupSignalsSlots()
 {
-    connect(&networkThread, &QThread::started,
-            network, &Network::lazyInit, Qt::QueuedConnection);
-    connect(network, &Network::pendingDatagram,
-            this, &MainWindow::processPendingDatagram, Qt::QueuedConnection);
+    connect(&networkThread, &QThread::started, network, &Network::lazyInit, Qt::QueuedConnection);
+    connect(
+        network,
+        &Network::pendingDatagram,
+        this,
+        &MainWindow::processPendingDatagram,
+        Qt::QueuedConnection);
     connect(&networkThread, &QThread::finished, network, &QObject::deleteLater);
 }
 
@@ -86,15 +89,14 @@ void MainWindow::crosshairMove(qreal horisontal, qreal vertical)
     qreal centerX = widht * 0.5 - crWidht * 0.5;
     qreal centerY = height * 0.5 - crHeight * 0.5;
 
-    auto animation = [=]
-    {
+    auto animation = [=] {
         QTimeLine *timer = new QTimeLine(3000);
 
         QGraphicsItemAnimation *animation = new QGraphicsItemAnimation(timer);
         animation->setItem(crosshair);
         animation->setTimeLine(timer);
-        animation->setPosAt(1.0, QPointF(centerX + (widht * 0.5 * horisontal),
-                                         centerY + (height * 0.5 * vertical)));
+        animation->setPosAt(
+            1.0, QPointF(centerX + (widht * 0.5 * horisontal), centerY + (height * 0.5 * vertical)));
 
         timer->start();
 

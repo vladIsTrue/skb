@@ -1,15 +1,14 @@
 #pragma once
 
+#include "animations.h"
 #include "network.h"
 #include "svgcrosshair.h"
-#include "animations.h"
 
-#include <QWidget>
-#include <QThread>
 #include <QGraphicsView>
+#include <QThread>
+#include <QWidget>
 
-namespace Ui
-{
+namespace Ui {
 class MainWindow;
 }
 

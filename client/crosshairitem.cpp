@@ -5,7 +5,8 @@ GreenCrosshairItem::GreenCrosshairItem(qreal size, qreal penWidth)
     , penWidth(penWidth)
 {}
 
-void GreenCrosshairItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void GreenCrosshairItem::paint(
+    QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
@@ -17,6 +18,5 @@ void GreenCrosshairItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
 
 QRectF GreenCrosshairItem::boundingRect() const
 {
-    return QRectF(-size - penWidth * 0.5, -size - penWidth * 0.5,
-                  size + penWidth, size + penWidth);
+    return QRectF(-size - penWidth * 0.5, -size - penWidth * 0.5, size + penWidth, size + penWidth);
 }

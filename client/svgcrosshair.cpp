@@ -31,8 +31,9 @@ void SvgCrosshair::setScale(qreal scale)
 
     QSizeF newSize = scaledRect().size();
 
-    setPos(oldPos.x() + (oldSize.width() - newSize.width()) * 0.5,
-           oldPos.y() + (oldSize.height() - newSize.height()) * 0.5);
+    setPos(
+        oldPos.x() + (oldSize.width() - newSize.width()) * 0.5,
+        oldPos.y() + (oldSize.height() - newSize.height()) * 0.5);
 }
 
 QRectF SvgCrosshair::boundingRect() const
